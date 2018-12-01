@@ -87,7 +87,7 @@ public class TwitterListenerWriter {
      */
     public void aggregateByCountry(String country, String date) {
         if ((currentDate != null) && !currentDate.equals(date)) {
-            writeDataForLogstash("/Users/saturn/IdeaProjects/HW3_Goncharova/configurations/output.txt");
+            writeDataForLogstash("./configurations/output.txt");
             countriesTweetsPerMinute.clear();
         }
 
