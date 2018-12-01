@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+
+  elastic:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.5.0
+    environment:
+    - discovery.type=single-node
+    - bootstrap.memory_lock=true
+    - cluster.routing.allocation.disk.threshold_enabled=false
+    - "ES_JAVA_OPTS: -Xms512m -Xmx512m"
+    ports:
+    - 9200:9200
+    - 9300:9300
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash-oss:6.5.0
+    volumes:
+    - ./configurations:/config-dir
+    command: logstash -f /config-dir/tweets.conf
+    ports:
+    - 5044:5044
+    - 9600:9600
+
+  grafana:
+    image: grafana/grafana:5.3.4
+    ports:
+    - 3000:3000

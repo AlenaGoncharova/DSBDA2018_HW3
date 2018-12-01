@@ -1,0 +1,1 @@
+java -jar /vagrant/target/HW3_Goncharova-1.0-SNAPSHOT.jar
